@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int chars_printed = 0, len = 0, int_val;
+	int chars_printed = 0, len = 0;
 	char c;
 	char *str;
 	va_list args;
@@ -42,16 +42,11 @@ int _printf(const char *format, ...)
 				write(1, str, len);
 				chars_printed += len;
 			}
-			else if (*format == 'i' || *format = 'd')
-			{
-				int_val = va_arg(args, int)
-				write(1, int_val, strlen(int_val));
-				chars_printed++;
-			}
-			else if(*format == '%')
+			else if (*format == '%')
 			{
 				write(1, format, 1);
-				cahrs_printed++;
+				chars_printed++;
+			}
 		}
 		format++;
 	}
