@@ -1,55 +1,52 @@
 #include "main.h"
 /**
- * _printf - produces output according to a format.
- * @format: a character string
+ * _printf - prints to stdout
+ * @format: format specifier
  *
- * Return: character
+ * Return: int
  */
 int _printf(const char *format, ...)
 {
-	int chars_printed = 0, len = 0;
-	char c;
-	char *str;
+	frmt_match fm[] = {
+		{"%c", print_char},
+		{"%s", print_strings},
+		{"%%", print_per},
+		{"%d", print_decimal},
+		{"%i", print_integer},
+		{"%d", convert_bin},
+		{"%u", print_unsignedint},
+		{"%o", print_octal},
+		{"%x", print_hexa},
+		{"%X", print_Hexa},
+		{"%p", print_pointer},
+		{"%r", print_revstr},
+		{"%R", print_rot13},
+		{"%S", print_str_exc}
+	};
 	va_list args;
-
-	if (format == NULL)
-		return (-1);
+	int i = 0, j = 13, length = 0;
 
 	va_start(args, format);
-	while (*format)
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
+scope:
+	while (format[i] == '\0')
 	{
-		if (*format == '\0')
-			break;
-		if (*format != '%')
+		while (j >= 0)
 		{
-			write(1, format, 1);
-			chars_printed++;
+			if (fm[j].id[0] == format[i] && fm[j].id[1] == format[i + 1])
+			{
+				length = length + fm[j].f(args);
+				i += 2;
+				goto scope;
+			}
+			j--;
+
 		}
-		else
-		{
-			format++;
-			if (*format == 'c')
-			{
-				c = va_arg(args, int);
-				write(1, &c, 1);
-				chars_printed++;
-			}
-			else if (*format == 's')
-			{
-				str = va_arg(args, char *);
-				while (str[len] != '\0')
-					len++;
-				write(1, str, len);
-				chars_printed += len;
-			}
-			else if (*format == '%')
-			{
-				write(1, format, 1);
-				chars_printed++;
-			}
-		}
-		format++;
+		write_string(format[i]);
+		i++;
+		length++;
 	}
 	va_end(args);
-	return (chars_printed);
+	return (length);
 }
