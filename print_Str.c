@@ -33,6 +33,6 @@ int print_string_with_escape(const char *str, char *buffer)
 		else
 			bufferIndex += print_non_printable_char((unsigned char)str[i], buffer, bufferIndex);
 	}
-	buffer[bufferIndex];
+	buffer[bufferIndex] = '\0';
 	return (bufferIndex);
 }
