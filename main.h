@@ -11,4 +11,5 @@ int print_char(int c);
 int print_str(char *str);
 int print_digit(long n, int base, int is_uppercase, int is_octal);
 int print_pointer(void *ptr);
+int print_binary(unsigned int n);
 #endif

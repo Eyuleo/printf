@@ -26,6 +26,8 @@ int print_format(char specifier, va_list argp)
 		count += print_digit((long)(va_arg(argp, unsigned int)), 10, 0, 0);
 	else if (specifier == 'p')
 		count += print_pointer(va_arg(argp, void *));
+	else if (specifier == 'b')
+		count += print_binary(va_arg(argp, unsigned int));
 	else
 	{
 		write(1, "%", 1);
