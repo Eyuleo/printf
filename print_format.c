@@ -10,6 +10,7 @@ int print_format(char specifier, va_list argp)
 {
 	int count = 0;
 	char buffer[BUFFER_SIZE];
+	const char *str;
 
 	if (specifier == 'c')
 		count = print_char(va_arg(argp, int));
@@ -29,6 +30,11 @@ int print_format(char specifier, va_list argp)
 		count += print_pointer(va_arg(argp, void *));
 	else if (specifier == 'b')
 		count += print_binary(va_arg(argp, unsigned int));
+	else if (specifier == 'S')
+	{
+		str = va_arg(argp, const char *);
+		count = print_string_with_escape(str, buffer);
+	}
 	else
 	{
 		snprintf(buffer, sizeof(buffer), "%%%c", specifier);

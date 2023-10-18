@@ -13,4 +13,6 @@ int print_str(char *str);
 int print_digit(long n, int base, int is_uppercase, int is_octal);
 int print_pointer(void *ptr);
 int print_binary(unsigned int n);
+int print_non_printable_char(unsigned char c, char *buffer, int bufferIndex);
+int print_string_with_escape(const char *str, char *buffer);
 #endif
