@@ -9,6 +9,7 @@
 int print_format(char specifier, va_list argp)
 {
 	int count = 0;
+	char buffer[BUFFER_SIZE];
 
 	if (specifier == 'c')
 		count = print_char(va_arg(argp, int));
@@ -30,9 +31,9 @@ int print_format(char specifier, va_list argp)
 		count += print_binary(va_arg(argp, unsigned int));
 	else
 	{
-		write(1, "%", 1);
-		write(1, &specifier, 1);
-		count += 2;
+		snprintf(buffer, sizeof(buffer), "%%%c", specifier);
+		count = strlen(buffer);
 	}
+	write(1, buffer, count);
 	return (count);
 }
