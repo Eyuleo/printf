@@ -5,26 +5,15 @@
  *
  * Return: nothing
  */
-int print_strings(va_list args)
+int print_str(char *str)
 {
-	char *str;
-	int i = 0, len;
+	int count = 0;
 
-	str = va_arg(args, char *);
-
-	if (str == NULL)
+	while (*str != '\0')
 	{
-		str = "(nil)";
-		len = _strlen(str);
-		for (; i < len; i++)
-			write_string(str[i]);
-		return (len);
+		print_char((int)*str);
+		++count;
+		++str;
 	}
-	else
-	{
-		len = _strlen(str);
-		for (; i < len; i++)
-			write_string(str[i]);
-		return (len);
-	}
+	return (count);
 }

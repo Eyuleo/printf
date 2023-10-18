@@ -5,11 +5,7 @@
  *
  * Return: 0 success
  */
-int print_char(va_list args)
+int print_char(int c)
 {
-	char str;
-
-	str = va_arg(args, int);
-	write_string(str);
-	return (0);
+	return (write(1, &c, 1));
 }
