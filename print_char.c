@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * print_char - prints cahr to stdout
- * @args: char to be printed
+ * @c: char to be printed
  *
  * Return: 0 success
  */

@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * print_strings - prints a str to stdout
- * @args: variadic arg
+ * @str: string
  *
  * Return: nothing
  */
