@@ -7,7 +7,7 @@
  */
 int print_pointer(void *ptr)
 {
-	char buffer[20];
+	char buffer[BUFFER_SIZE];
 
 	snprintf(buffer, sizeof(buffer), "%p", ptr);
 	return (print_str(buffer));
